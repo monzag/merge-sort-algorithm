@@ -18,5 +18,15 @@ public class MergeSort {
         mergeSort(low, high);
     }
 
+    private void mergeSort(int low, int high) {
+        int middle = low + (high - low) / 2;
+
+        if (low < high) {
+            mergeSort(low, middle);
+            mergeSort(middle + 1, high);
+            merge(low, middle, high);
+        }
+    }
+
 
 }
