@@ -28,5 +28,29 @@ public class MergeSort {
         }
     }
 
+    private void merge(int low, int middle, int high) {
+        for (int index = low; index <= high; index++) {
+            temp[index] = numbers.get(index);
+        }
 
+        int i = low;
+        int j = middle + 1;
+        int k = low;
+        while (i <= middle && j <= high) {
+            if (temp[i] <= numbers.get(j)) {
+                numbers.set(k, temp[i]);
+                i++;
+
+            } else {
+                numbers.set(k, temp[j]);
+                j++;
+            }
+            k++;
+        }
+        while (i <= middle) {
+            numbers.set(k, temp[i]);
+            k++;
+            i++;
+        }
+    }
 }
