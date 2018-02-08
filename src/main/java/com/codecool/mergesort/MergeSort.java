@@ -4,6 +4,10 @@ import java.util.List;
 
 public class MergeSort {
 
+    private static final int FIRST_INDEX = 0;
+    private static final int INDEX_CORRECTION = 1;
+    private static final int BY_TWO = 2;
+
     private List<Integer> numbers;
     private Integer[] temp;
 
@@ -11,19 +15,19 @@ public class MergeSort {
         if (toSort == null) {
             throw new IllegalArgumentException();
         }
-        int low = 0;
-        int high = toSort.size() - 1;
+        int low = FIRST_INDEX;
+        int high = toSort.size() - INDEX_CORRECTION;
         numbers = toSort;
-        temp = new Integer[high + 1];
+        temp = new Integer[high + INDEX_CORRECTION];
         mergeSort(low, high);
     }
 
     private void mergeSort(int low, int high) {
-        int middle = low + (high - low) / 2;
+        int middle = low + (high - low) / BY_TWO;
 
         if (low < high) {
             mergeSort(low, middle);
-            mergeSort(middle + 1, high);
+            mergeSort(middle + INDEX_CORRECTION, high);
             merge(low, middle, high);
         }
     }
@@ -34,7 +38,7 @@ public class MergeSort {
         }
 
         int i = low;
-        int j = middle + 1;
+        int j = middle + INDEX_CORRECTION;
         int k = low;
         while (i <= middle && j <= high) {
             if (temp[i] <= numbers.get(j)) {
